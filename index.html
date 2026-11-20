@@ -3,416 +3,356 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LexiTech Studio // Human-Centered AI &amp; Digital Innovation</title>
+  <title>LexiTech Studio</title>
   <link rel="preconnect" href="https://googleapis.com" />
   <link rel="preconnect" href="https://gstatic.com" crossorigin />
-  <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --canvas: #E2E5E9;
-      --canvas-grid: rgba(17, 24, 39, 0.065);
-      --graphite: #12151B;
-      --graphite-elevated: #1A1F28;
-      --border-dark: #2B3240;
-      --border-light: #C6CCD4;
-      --silver: #F8FAFC;
-      --muted-silver: #9CA3AF;
-      --ink: #0F172A;
-      --accent-green: #10B981;
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
+      background: #000000;
+      color: #EDEDED;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--canvas);
-      background-image:
-        linear-gradient(to right, var(--canvas-grid) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--canvas-grid) 1px, transparent 1px);
-      background-size: 48px 48px;
-      color: var(--ink);
-      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     .mono { font-family: 'JetBrains Mono', monospace; }
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
     nav {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(226, 229, 233, 0.86);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-light);
-    }
-    .nav-inner {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      height: 64px; padding: 0 28px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 68px; gap: 16px;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .brand-mark { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
-    .brand-mark img { height: 34px; width: auto; border-radius: 6px; }
-    .brand-title { font-weight: 800; font-size: 16px; letter-spacing: 0.08em; }
-    .nav-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .pill {
-      font-size: 12px; font-weight: 600; text-decoration: none;
-      padding: 7px 13px; border-radius: 6px;
-      border: 1px solid var(--border-light);
-      background: rgba(255, 255, 255, 0.65); color: var(--ink);
-      transition: all 0.18s ease;
+    .nav-left {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: #FFFFFF; font-weight: 600; font-size: 14px; letter-spacing: 0.1em;
     }
-    .pill:hover { background: var(--graphite); color: var(--silver); border-color: var(--graphite); }
-    .pill-dark { background: var(--graphite); color: var(--silver); border-color: var(--graphite); }
-    .pill-dark:hover { background: #262C3A; }
+    .nav-left img { height: 24px; width: auto; }
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a { color: #888888; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .nav-links a:hover { color: #FFFFFF; }
   </style>
 </head>
 <body>
   <nav>
-    <div class="container nav-inner">
-      <a href="#" class="brand-mark">
-        <img src="LEXItech.PNG" alt="LexiTech Studio Logo" />
-        <span class="brand-title">LEXITECH STUDIO</span>
-      </a>
-      <div class="nav-links">
-        <span class="pill mono">EST. 2026</span>
-        <a href="#ecosystem" class="pill">Ecosystem</a>
-        <a href="#architecture" class="pill">Architecture</a>
-        <a href="https://share.streamlit.io/user/heidiseckman" target="_blank" rel="noopener" class="pill pill-dark">Streamlit Cloud ↗</a>
-      </div>
+    <a href="#" class="nav-left">
+      <img src="LEXItech.PNG" alt="LexiTech" />
+      <span>LEXITECH</span>
+    </a>
+    <div class="nav-links">
+      <a href="#platforms">Ecosystem</a>
+      <a href="#pillars">Architecture</a>
+      <a href="#studio">About</a>
     </div>
   </nav>
   <style>
-    .hero-wrap { padding: 48px 0 32px; }
-    .hero-card {
-      background: linear-gradient(145deg, #161A22 0%, #0E1116 100%);
-      border: 1px solid var(--border-dark);
-      border-radius: 16px;
-      padding: 52px 44px;
-      color: var(--silver);
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 40px;
-      align-items: center;
+    .hero {
+      min-height: 92vh;
+      padding: 120px 24px 72px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
       position: relative;
-      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .hero-logo-box {
-      width: 190px; height: 190px;
-      border-radius: 18px;
-      background: #0B0D12;
-      border: 1px solid #303846;
+    .eclipse-stage {
+      position: relative;
+      width: 280px; height: 280px;
       display: flex; align-items: center; justify-content: center;
-      padding: 14px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      margin-bottom: 36px;
     }
-    .hero-logo-box img { width: 170px; height: auto; display: block; border-radius: 10px; }
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: #D1D5DB; background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-dark);
-      padding: 6px 12px; border-radius: 999px; margin-bottom: 18px;
+    .eclipse-glow {
+      position: absolute;
+      inset: -35px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 50% 48%,
+        rgba(255, 255, 255, 0.42) 0%,
+        rgba(255, 255, 255, 0.16) 34%,
+        rgba(255, 255, 255, 0.04) 58%,
+        rgba(0, 0, 0, 0) 74%
+      );
+      filter: blur(22px);
+      pointer-events: none;
     }
-    .dot-live {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent-green);
-      box-shadow: 0 0 10px var(--accent-green);
+    .eclipse-logo {
+      position: relative;
+      z-index: 2;
+      width: 210px;
+      height: auto;
+      display: block;
+      filter:
+        drop-shadow(0 0 14px rgba(255, 255, 255, 0.55))
+        drop-shadow(0 0 38px rgba(255, 255, 255, 0.25));
     }
-    .hero-card h1 {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800; line-height: 1.15;
-      letter-spacing: -0.025em; margin-bottom: 16px;
+    .hero h1 {
+      font-size: clamp(38px, 6.2vw, 68px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.06;
       color: #FFFFFF;
+      max-width: 780px;
+      margin-bottom: 18px;
     }
-    .hero-card p {
-      font-size: 16px; color: var(--muted-silver);
-      max-width: 640px; margin-bottom: 28px;
+    .hero-sub {
+      font-size: 16px;
+      color: #888888;
+      max-width: 520px;
+      margin-bottom: 34px;
+      line-height: 1.5;
     }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary {
-      background: #F8FAFC; color: #0F172A;
-      font-weight: 700; font-size: 14px;
-      padding: 12px 20px; border-radius: 8px;
-      text-decoration: none; border: 1px solid #F8FAFC;
-      transition: all 0.18s ease;
+    .hero-pills {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
     }
-    .btn-primary:hover { background: #E2E8F0; transform: translateY(-1px); }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05); color: #F8FAFC;
-      font-weight: 600; font-size: 14px;
-      padding: 12px 20px; border-radius: 8px;
-      text-decoration: none; border: 1px solid var(--border-dark);
-      transition: all 0.18s ease;
+    .btn-white {
+      background: #FFFFFF; color: #000000;
+      font-size: 14px; font-weight: 600;
+      padding: 13px 26px; border-radius: 999px;
+      text-decoration: none; border: 1px solid #FFFFFF;
+      transition: transform 0.18s ease, background 0.18s ease;
     }
-    .btn-secondary:hover { background: rgba(255, 255, 255, 0.12); border-color: #4B5563; }
-    @media (max-width: 768px) {
-      .hero-card { grid-template-columns: 1fr; padding: 34px 24px; text-align: left; }
-      .hero-logo-box { width: 168px; height: 168px; }
-      .hero-logo-box img { width: 150px; }
+    .btn-white:hover { background: #E5E5E5; transform: translateY(-1px); }
+    .btn-ghost {
+      background: #000000; color: #EDEDED;
+      font-size: 14px; font-weight: 500;
+      padding: 13px 26px; border-radius: 999px;
+      text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: border-color 0.18s ease, background 0.18s ease;
     }
+    .btn-ghost:hover { border-color: #FFFFFF; background: #0D0D0D; }
   </style>
 
-  <main class="container">
-    <section class="hero-wrap">
-      <div class="hero-card">
-        <div class="hero-logo-box">
-          <img src="LEXItech.PNG" alt="LexiTech Studio Emblem" />
-        </div>
-        <div>
-          <div class="status-badge mono">
-            <span class="dot-live"></span>
-            <span>LEXITECH STUDIO // PARENT ARCHITECTURE</span>
-          </div>
-          <h1>Human-Centered AI Systems Engineered for Real-World Precision.</h1>
-          <p>
-            Founded by Heidi Seckman, LexiTech Studio builds specialized neural platforms across
-            forensic legal &amp; tax intelligence, conversational voice systems, and private digital wellness sanctuaries.
-          </p>
-          <div class="hero-actions">
-            <a href="#ecosystem" class="btn-primary">Explore Live Ecosystem ↓</a>
-            <a href="https://github.io" target="_blank" rel="noopener" class="btn-secondary">Launch Legal &amp; Tax Suite ↗</a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="hero">
+    <div class="eclipse-stage">
+      <div class="eclipse-glow"></div>
+      <img src="LEXItech.PNG" alt="LexiTech Studio" class="eclipse-logo" />
+    </div>
+    <h1>Human-Centered<br />AI Infrastructure</h1>
+    <p class="hero-sub mono">Built for legal precision, neural voice, and private digital sanctuaries.</p>
+    <div class="hero-pills">
+      <a href="#platforms" class="btn-white">Explore Ecosystem</a>
+      <a href="https://github.io" target="_blank" rel="noopener" class="btn-ghost">Launch LexiTech ↗</a>
+    </div>
+  </section>
   <style>
-    .section-block { padding: 36px 0; }
-    .section-header {
-      display: flex; align-items: baseline; justify-content: space-between;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 14px; margin-bottom: 24px; gap: 12px; flex-wrap: wrap;
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .band { padding: 84px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .kicker {
+      font-size: 12px; color: #888888; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 10px; display: block;
     }
-    .section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #475569; }
-    .section-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
-    .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .eco-card {
-      background: var(--graphite);
-      border: 1px solid var(--border-dark);
-      border-radius: 14px;
-      padding: 28px 24px;
-      color: var(--silver);
+    .band-title {
+      font-size: clamp(26px, 4vw, 38px); font-weight: 700;
+      letter-spacing: -0.03em; color: #FFFFFF; margin-bottom: 40px;
+    }
+    .hairline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .cell {
+      padding: 36px 28px;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: #000000;
       display: flex; flex-direction: column; justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: background 0.2s ease;
     }
-    .eco-card:hover {
-      transform: translateY(-3px);
-      border-color: #64748B;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
+    .cell:hover { background: #080808; }
+    .cell-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 11px; color: #777777; margin-bottom: 22px;
     }
-    .eco-card.dev-card { background: #181C24; border-style: dashed; border-color: #3B4454; }
-    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-    .tag-pill {
-      font-size: 11px; padding: 4px 10px; border-radius: 999px;
-      border: 1px solid var(--border-dark); background: rgba(255, 255, 255, 0.04);
-      color: #CBD5E1;
+    .live-ind { color: #EDEDED; }
+    .cell h3 {
+      font-size: 21px; font-weight: 600; letter-spacing: -0.02em;
+      color: #FFFFFF; margin-bottom: 12px;
     }
-    .tag-live { color: #34D399; border-color: rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.08); }
-    .eco-card h3 { font-size: 20px; font-weight: 700; color: #FFFFFF; margin-bottom: 10px; }
-    .eco-card p { font-size: 14px; color: var(--muted-silver); margin-bottom: 18px; }
-    .feature-list { list-style: none; margin-bottom: 24px; display: grid; gap: 8px; }
-    .feature-list li {
-      font-size: 13px; color: #D1D5DB; padding-left: 16px; position: relative;
+    .cell p { font-size: 14px; color: #888888; line-height: 1.6; margin-bottom: 24px; }
+    .cell-specs { list-style: none; margin-bottom: 30px; display: grid; gap: 9px; }
+    .cell-specs li { font-size: 13px; color: #B4B4B4; }
+    .cell-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: #FFFFFF;
+      text-decoration: none; padding: 10px 18px; border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22); width: fit-content;
+      transition: background 0.18s ease, color 0.18s ease;
     }
-    .feature-list li::before {
-      content: "▪"; position: absolute; left: 0; color: #94A3B8;
-    }
-    .card-link {
-      display: inline-flex; align-items: center; justify-content: center; width: 100%;
-      padding: 11px 16px; border-radius: 8px; font-size: 13px; font-weight: 700;
-      text-decoration: none; background: #F8FAFC; color: #0F172A;
-      transition: background 0.18s ease;
-    }
-    .card-link:hover { background: #CBD5E1; }
-    .card-link-muted {
-      background: rgba(255, 255, 255, 0.05); color: #9CA3AF;
-      border: 1px solid var(--border-dark); cursor: default;
-    }
-    @media (max-width: 920px) { .eco-grid { grid-template-columns: 1fr; } }
+    .cell-cta:hover { background: #FFFFFF; color: #000000; }
+    .cell-cta.muted { color: #555555; border-color: rgba(255, 255, 255, 0.09); pointer-events: none; }
+    @media (max-width: 900px) { .hairline-grid { grid-template-columns: 1fr; } }
   </style>
 
-    <section id="ecosystem" class="section-block">
-      <div class="section-header">
-        <div>
-          <div class="section-label mono">01 // PRODUCTION PLATFORMS</div>
-          <h2 class="section-title">LexiTech Studio Ecosystem</h2>
+  <section id="platforms" class="band">
+    <div class="container">
+      <span class="kicker mono">01 // ECOSYSTEM</span>
+      <h2 class="band-title">Production Platforms</h2>
+      <div class="hairline-grid">
+        <div class="cell">
+          <div>
+            <div class="cell-meta mono">
+              <span>01 // LEGAL &amp; TAX</span>
+              <span class="live-ind">● LIVE</span>
+            </div>
+            <h3>LexiTech Legal &amp; Tax AI</h3>
+            <p>Closed-book contract and IRS intelligence engine uniting document auditing, tax-trap scanning, life-event simulation, and LEXI voice.</p>
+            <ul class="cell-specs mono">
+              <li>+ Document AI &amp; IRS Lookup</li>
+              <li>+ Tax-Trap Contract Scanner</li>
+              <li>+ Life Event Simulator &amp; LEXI Core</li>
+            </ul>
+          </div>
+          <a href="https://github.io" target="_blank" rel="noopener" class="cell-cta">Launch Platform ↗</a>
         </div>
-        <span class="section-label mono">3 ARCHITECTURAL SLOTS</span>
-      </div>
 
-      <div class="eco-grid">
-        <article class="eco-card">
+        <div class="cell">
           <div>
-            <div class="card-top">
-              <span class="tag-pill mono">FLAGSHIP 01</span>
-              <span class="tag-pill tag-live mono">● LIVE</span>
+            <div class="cell-meta mono">
+              <span>02 // WELLNESS</span>
+              <span class="live-ind">● LIVE</span>
             </div>
-            <h3>LexiTech Legal &amp; Tax AI Suite</h3>
-            <p>
-              Closed-book forensic contract &amp; IRS intelligence platform uniting four specialized AI engines and voice core.
-            </p>
-            <ul class="feature-list">
-              <li>Legal &amp; Tax Document AI Assistant</li>
-              <li>Dual-Corpus Tax-Trap Contract Scanner</li>
-              <li>Worst-Case Life Event Simulator &amp; LEXI Voice</li>
+            <h3>LexiCare Sanctuary</h3>
+            <p>24/7 private twilight-lagoon digital sanctuary and conversational neural voice companion built to reflect, reset, and thrive.</p>
+            <ul class="cell-specs mono">
+              <li>+ Ava Multilingual Neural Voice</li>
+              <li>+ Guided Breathing &amp; Worry Release</li>
+              <li>+ Ambient Soundscapes &amp; Safety Shield</li>
             </ul>
           </div>
-          <a href="https://github.io" target="_blank" rel="noopener" class="card-link">Open LexiTech Suite ↗</a>
-        </article>
+          <a href="https://streamlit.app" target="_blank" rel="noopener" class="cell-cta">Enter Sanctuary ↗</a>
+        </div>
 
-        <article class="eco-card">
+        <div class="cell">
           <div>
-            <div class="card-top">
-              <span class="tag-pill mono">FLAGSHIP 02</span>
-              <span class="tag-pill tag-live mono">● LIVE</span>
-            </div>
-            <h3>LexiCare Digital Sanctuary</h3>
-            <p>
-              24/7 private twilight-lagoon AI wellness companion built to reflect, reset, and thrive with real-time neural voice.
-            </p>
-            <ul class="feature-list">
-              <li>Guided 60-Second Breathing &amp; Worry Release</li>
-              <li>Procedural Ambient Soundscapes &amp; Sanctuary Orb</li>
-              <li>Ava Multilingual Voice &amp; Built-In Crisis Shield</li>
-            </ul>
-          </div>
-          <a href="https://streamlit.app" target="_blank" rel="noopener" class="card-link">Enter LexiCare Sanctuary ↗</a>
-        </article>
-
-        <article class="eco-card dev-card">
-          <div>
-            <div class="card-top">
-              <span class="tag-pill mono">SLOT 03</span>
-              <span class="tag-pill mono">IN DEVELOPMENT</span>
+            <div class="cell-meta mono">
+              <span>03 // PIPELINE</span>
+              <span>IN DEVELOPMENT</span>
             </div>
             <h3>In Development</h3>
-            <p>
-              Next-generation human-centered AI module currently undergoing architectural prototyping inside LexiTech Studio.
-            </p>
-            <ul class="feature-list">
-              <li>Modular Neural Core Integration</li>
-              <li>Zero-Hallucination Grounding &amp; Safety First</li>
-              <li>Expanding the Studio Product Lineup</li>
+            <p>Next-generation AI architecture currently in active studio prototyping—engineered with closed-book grounding and real-time voice.</p>
+            <ul class="cell-specs mono">
+              <li>+ Modular Neural Core</li>
+              <li>+ Zero-Hallucination Guardrails</li>
+              <li>+ Expanding Studio Lineup</li>
             </ul>
           </div>
-          <span class="card-link card-link-muted mono">RESERVED FOR NEXT RELEASE</span>
-        </article>
+          <span class="cell-cta muted mono">Coming Soon</span>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
   <style>
-    .arch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .arch-box {
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid var(--border-light);
-      border-radius: 12px;
-      padding: 22px 20px;
-    }
-    .arch-num { font-size: 11px; color: #475569; margin-bottom: 8px; display: block; }
-    .arch-box h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-    .arch-box p { font-size: 13px; color: #334155; }
-    .founder-card {
-      background: var(--graphite-elevated);
-      border: 1px solid var(--border-dark);
-      border-radius: 14px;
-      padding: 36px 32px;
-      color: var(--silver);
+    .pillars-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 28px;
-      align-items: center;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
     }
-    .founder-card h3 { font-size: 20px; font-weight: 700; color: #FFFFFF; margin-bottom: 10px; }
-    .founder-card p { font-size: 14px; color: var(--muted-silver); max-width: 700px; }
-    .social-stack { display: flex; flex-direction: column; gap: 10px; min-width: 190px; }
-    .social-btn {
-      display: block; text-align: center; padding: 10px 16px;
-      border-radius: 8px; font-size: 13px; font-weight: 600;
-      text-decoration: none; color: var(--silver);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-dark);
+    .pillar {
+      padding: 28px 22px;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .pillar-id { font-size: 11px; color: #666666; margin-bottom: 14px; display: block; }
+    .pillar h3 { font-size: 16px; font-weight: 600; color: #FFFFFF; margin-bottom: 8px; }
+    .pillar p { font-size: 13px; color: #888888; line-height: 1.55; }
+    .studio-panel {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 44px 36px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+      background: radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.05), transparent 55%);
+    }
+    .studio-panel h3 {
+      font-size: 24px; font-weight: 700; letter-spacing: -0.02em;
+      color: #FFFFFF; margin-bottom: 10px;
+    }
+    .studio-panel p { font-size: 14px; color: #888888; max-width: 620px; line-height: 1.65; }
+    .studio-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .pill-link {
+      font-size: 13px; font-weight: 500; color: #EDEDED;
+      text-decoration: none; padding: 10px 18px; border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
       transition: all 0.18s ease;
     }
-    .social-btn:hover { background: #F8FAFC; color: #0F172A; border-color: #F8FAFC; }
-    footer {
-      margin-top: 48px;
-      border-top: 1px solid var(--border-light);
-      background: rgba(214, 218, 224, 0.7);
-      padding: 32px 0 44px;
-    }
-    .footer-inner {
+    .pill-link:hover { background: #FFFFFF; color: #000000; border-color: #FFFFFF; }
+    footer { padding: 40px 0 56px; color: #666666; font-size: 12px; }
+    .foot-row {
       display: flex; justify-content: space-between; align-items: flex-start;
       gap: 24px; flex-wrap: wrap;
     }
-    .footer-copy { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-    .footer-note { font-size: 12px; color: #475569; max-width: 620px; }
-    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
-    .footer-links a { font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none; }
-    .footer-links a:hover { text-decoration: underline; }
-    @media (max-width: 920px) { .arch-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 680px) {
-      .arch-grid { grid-template-columns: 1fr; }
-      .founder-card { grid-template-columns: 1fr; }
-    }
+    .foot-copy { color: #AAAAAA; font-weight: 500; margin-bottom: 6px; }
+    .foot-disc { max-width: 600px; line-height: 1.55; }
+    .foot-nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-nav a { color: #888888; text-decoration: none; }
+    .foot-nav a:hover { color: #FFFFFF; }
+    @media (max-width: 900px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .pillars-grid { grid-template-columns: 1fr; } }
   </style>
 
-    <section id="architecture" class="section-block">
-      <div class="section-header">
-        <div>
-          <div class="section-label mono">02 // ENGINEERING STANDARDS</div>
-          <h2 class="section-title">Core Studio Architecture</h2>
+  <section id="pillars" class="band">
+    <div class="container">
+      <span class="kicker mono">02 // INFRASTRUCTURE</span>
+      <h2 class="band-title">Core Studio Architecture</h2>
+      <div class="pillars-grid">
+        <div class="pillar">
+          <span class="pillar-id mono">01</span>
+          <h3>Human-Centered Design</h3>
+          <p>Purpose-built environments crafted for high-stakes clarity and serene daily utility.</p>
         </div>
-        <span class="section-label mono">4 FOUNDATIONAL PILLARS</span>
-      </div>
-      <div class="arch-grid">
-        <div class="arch-box">
-          <span class="arch-num mono">PILLAR // 01</span>
-          <h3>Human-Centered AI Design</h3>
-          <p>Purpose-built interfaces tailored to high-stakes clarity, calm digital sanctuaries, and intuitive daily workflows.</p>
+        <div class="pillar">
+          <span class="pillar-id mono">02</span>
+          <h3>Neural Voice Systems</h3>
+          <p>Real-time conversational voice cores engineered for natural warmth and multi-provider resilience.</p>
         </div>
-        <div class="arch-box">
-          <span class="arch-num mono">PILLAR // 02</span>
-          <h3>Real-Time Neural Voice</h3>
-          <p>Low-latency conversational voice cores engineered for natural warmth, clarity, and multi-engine resilience.</p>
-        </div>
-        <div class="arch-box">
-          <span class="arch-num mono">PILLAR // 03</span>
+        <div class="pillar">
+          <span class="pillar-id mono">03</span>
           <h3>Closed-Book Grounding</h3>
-          <p>Strict source-anchored extraction with page and tab verification to prevent unsupported guesswork.</p>
+          <p>Strict source-anchored retrieval with mandatory page citations to eliminate guesswork.</p>
         </div>
-        <div class="arch-box">
-          <span class="arch-num mono">PILLAR // 04</span>
-          <h3>Built-In Safety Guardrails</h3>
-          <p>Multi-model failover routing, privacy-first architecture, and dedicated crisis-response protection layers.</p>
+        <div class="pillar">
+          <span class="pillar-id mono">04</span>
+          <h3>Safety Guardrails</h3>
+          <p>Automated failover routing, privacy-first sessions, and crisis-response protection layers.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section-block">
-      <div class="founder-card">
+  <section id="studio" class="band">
+    <div class="container">
+      <div class="studio-panel">
         <div>
-          <div class="section-label mono" style="color:#94A3B8; margin-bottom:8px;">03 // ABOUT LEXITECH STUDIO</div>
-          <h3>Founded &amp; Engineered by Heidi Seckman</h3>
+          <span class="kicker mono">03 // LEXITECH STUDIO</span>
+          <h3>Founded by Heidi Seckman</h3>
           <p>
-            Established in 2026, LexiTech Studio operates as an independent AI architecture and product lab building
-            specialized applications across multiple domains—from forensic legal &amp; tax collision engines to 24/7
-            voice-enabled digital wellness platforms.
+            Established in 2026, LexiTech Studio is an independent AI research and product studio building
+            specialized systems across forensic legal &amp; tax analysis and private voice-guided digital wellness.
           </p>
         </div>
-        <div class="social-stack">
-          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn">LinkedIn Company ↗</a>
-          <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn">Facebook Page ↗</a>
-          <a href="https://streamlit.io" target="_blank" rel="noopener" class="social-btn">Streamlit Portfolio ↗</a>
+        <div class="studio-links">
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="pill-link">LinkedIn ↗</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="pill-link">Facebook ↗</a>
+          <a href="https://streamlit.io" target="_blank" rel="noopener" class="pill-link">Streamlit ↗</a>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
-    <div class="container footer-inner">
+    <div class="container foot-row">
       <div>
-        <div class="footer-copy">© 2026 LexiTech Studio by Heidi Seckman. All Rights Reserved.</div>
-        <div class="footer-note">
-          Proprietary software architecture, interface design, and studio branding. Applications within the LexiTech Studio
+        <div class="foot-copy">© 2026 LexiTech Studio by Heidi Seckman. All Rights Reserved.</div>
+        <div class="foot-disc">
+          Proprietary architecture, interface design, and studio branding. Applications within the LexiTech Studio
           ecosystem provide educational, analytical, and wellness support only and do not constitute formal legal, tax, financial, or medical advice.
         </div>
       </div>
-      <div class="footer-links">
-        <a href="https://github.io" target="_blank" rel="noopener">LexiTech Suite</a>
+      <div class="foot-nav mono">
+        <a href="https://github.io" target="_blank" rel="noopener">LexiTech</a>
         <a href="https://streamlit.app" target="_blank" rel="noopener">LexiCare</a>
         <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
