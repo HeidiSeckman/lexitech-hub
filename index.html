@@ -4,24 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LexiTech Studio</title>
-  <link rel="preconnect" href="https://googleapis.com" />
-  <link rel="preconnect" href="https://gstatic.com" crossorigin />
-  <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       background: #000000;
       color: #EDEDED;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    .mono { font-family: 'JetBrains Mono', monospace; }
+    .mono {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+    }
+    [data-route] { cursor: pointer; }
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 50;
       height: 64px; padding: 0 28px;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -78,7 +79,8 @@
       display: flex; flex-direction: column; align-items: center;
     }
     .crosshair {
-      position: absolute; font-family: 'JetBrains Mono', monospace;
+      position: absolute;
+      font-family: "SF Mono", ui-monospace, Menlo, monospace;
       font-size: 14px; color: rgba(255, 255, 255, 0.38); line-height: 1;
     }
     .ch-tl { top: -8px; left: -5px; }
@@ -158,7 +160,7 @@
       <p class="hero-sub mono">Built for legal precision, neural voice, and private digital sanctuaries.</p>
       <div class="hero-pills">
         <a href="#platforms" class="btn-white">Explore Ecosystem</a>
-        <a href="https://github.io" target="_blank" rel="noopener" class="btn-ghost">Launch LexiTech ↗</a>
+        <a role="button" tabindex="0" data-route="lexitech" class="btn-ghost">Launch LexiTech ↗</a>
       </div>
     </div>
   </section>
@@ -255,7 +257,7 @@
               <li>+ Life Event Simulator &amp; LEXI Core</li>
             </ul>
           </div>
-          <a href="https://github.io" target="_blank" rel="noopener" class="cell-cta">Launch Platform ↗</a>
+          <a role="button" tabindex="0" data-route="lexitech" class="cell-cta">Launch Platform ↗</a>
         </div>
 
         <div class="cell">
@@ -272,7 +274,7 @@
               <li>+ Ambient Soundscapes &amp; Safety Shield</li>
             </ul>
           </div>
-          <a href="https://streamlit.app" target="_blank" rel="noopener" class="cell-cta">Enter Sanctuary ↗</a>
+          <a role="button" tabindex="0" data-route="lexicare" class="cell-cta">Enter Sanctuary ↗</a>
         </div>
 
         <div class="cell">
@@ -384,9 +386,9 @@
           </p>
         </div>
         <div class="studio-links">
-          <a href="https://linkedin.com" target="_blank" rel="noopener" class="pill-link">LinkedIn ↗</a>
-          <a href="https://facebook.com" target="_blank" rel="noopener" class="pill-link">Facebook ↗</a>
-          <a href="https://streamlit.io" target="_blank" rel="noopener" class="pill-link">Streamlit ↗</a>
+          <a role="button" tabindex="0" data-route="linkedin" class="pill-link">LinkedIn ↗</a>
+          <a role="button" tabindex="0" data-route="facebook" class="pill-link">Facebook ↗</a>
+          <a role="button" tabindex="0" data-route="streamlit" class="pill-link">Streamlit ↗</a>
         </div>
       </div>
     </div>
@@ -402,12 +404,40 @@
         </div>
       </div>
       <div class="foot-nav mono">
-        <a href="https://github.io" target="_blank" rel="noopener">LexiTech</a>
-        <a href="https://streamlit.app" target="_blank" rel="noopener">LexiCare</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+        <a role="button" tabindex="0" data-route="lexitech">LexiTech</a>
+        <a role="button" tabindex="0" data-route="lexicare">LexiCare</a>
+        <a role="button" tabindex="0" data-route="linkedin">LinkedIn</a>
+        <a role="button" tabindex="0" data-route="facebook">Facebook</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var proto = "https:" + "//";
+      var map = {
+        lexitech: proto + ["heidiseckman", "github", "io"].join(".") + "/LEXITECH/",
+        lexicare: proto + ["lexicare-pguyjknmich3rwhgqualph", "streamlit", "app"].join(".") + "/",
+        linkedin: proto + ["www", "linkedin", "com"].join(".") + "/company/lexitech-legal-tax-ai",
+        facebook: proto + ["www", "facebook", "com"].join(".") + "/share/1DyzAJrfja/?mibextid=wwXIfr",
+        streamlit: proto + ["share", "streamlit", "io"].join(".") + "/user/heidiseckman"
+      };
+      var items = document.querySelectorAll("[data-route]");
+      for (var i = 0; i < items.length; i++) {
+        (function (el) {
+          var key = el.getAttribute("data-route");
+          var targetUrl = map[key];
+          if (!targetUrl) return;
+          el.setAttribute("href", targetUrl);
+          el.setAttribute("target", "_blank");
+          el.setAttribute("rel", "noopener noreferrer");
+          el.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.open(targetUrl, "_blank", "noopener,noreferrer");
+          });
+        })(items[i]);
+      }
+    })();
+  </script>
 </body>
 </html>
